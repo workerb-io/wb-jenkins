@@ -1,9 +1,5 @@
-/**
- * Add all the constants that are going to be used in the package
- * like Base URL for an API, Access Tokens (if required)
- * 
- * Example
- * export const API_URL = 'https://awesome-app.com/api/'
- */
+export const JENKINS_TOKEN = VARS['jenkinsToken'];
+export const JENKINS_USER = VARS['jenkinsUser'];
+export const JENKINS_URL = VARS['jenkinsUrl'];
+// export const API_URL: string = `https://app.asana.com/api/${API_VERSION}`;
 
-export const TASK_EXECUTED: string = 'Task Executed!';
