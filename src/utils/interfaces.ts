@@ -3,7 +3,23 @@
  * of this package
  */
 
-export interface InnerComponentOptions {
+export interface ErrorResponse {
+    message: string;
+    phrase: string;
+}
+
+export interface DecodedAPIResponse {
+    response: any;
+    status: number;
+}
+export interface Job {
+    _class?: string;
     name: string;
-    description: string;
+    url: string;
+    color?: string;
+    description?: string;
+    displayName?: string;
+    fullName?: string;
+    buildable?: boolean;
+    property?: Array<object>;
 }
