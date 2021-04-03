@@ -16,10 +16,7 @@ export interface Job {
     _class?: string;
     name: string;
     url: string;
-    color?: string;
     description?: string;
-    displayName?: string;
     fullName?: string;
-    buildable?: boolean;
     property?: Array<object>;
 }

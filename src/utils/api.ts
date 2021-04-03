@@ -9,12 +9,12 @@ const API_HEADERS = {
 
 export const getJobs = (): DecodedAPIResponse => {
 	return decodeApiResponse(
-		httpGet(getUrl(`/view/All/api/json`), API_HEADERS)
+		httpGet(getUrl(`/view/All/api/json?tree=jobs[name,url,description,fullName,property[parameterDefinitions[name]]]`), API_HEADERS)
 	);
 }
 
-export const buildJob = (jobUrl: string): DecodedAPIResponse => {
+export const buildJob = (buildUrl: string): DecodedAPIResponse => {
 	return decodeApiResponse(
-		httpPost(jobUrl, {}, API_HEADERS)
+		httpPost(buildUrl, JSON.stringify({}), API_HEADERS)
 	)
 }
