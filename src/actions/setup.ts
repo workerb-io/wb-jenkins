@@ -56,9 +56,6 @@ if (jenkinsUrl) {
 		if (!token) {
 			notify("Empty token", "error", 3000)
 		} else {
-			log(token)
-			log(user_name)
-			log(jenkinsUrl)
 			setVars([
 				{
 					name: "jenkinsToken",

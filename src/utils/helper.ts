@@ -6,8 +6,6 @@ export const getUrl = (endPoint: string): string => {
 }
 
 export const decodeApiResponse = (result: APIResponse): DecodedAPIResponse => {
-	log("RESULT")
-	log(result)
 	if (!result.response) {
 		return {
 			response: {},

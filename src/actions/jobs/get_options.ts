@@ -5,8 +5,6 @@ const returnOptions = () => {
 
 	const jobs = retrieveJobs();
 
-	log(JSON.stringify(jobs))
-
 	return {
 		add: jobs
 	};
