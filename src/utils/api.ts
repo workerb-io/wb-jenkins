@@ -18,3 +18,15 @@ export const buildJob = (buildUrl: string): DecodedAPIResponse => {
 		httpPost(buildUrl, JSON.stringify({}), API_HEADERS)
 	)
 }
+
+export const deleteJob = (deleteUrl: string): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpPost(deleteUrl, JSON.stringify({}), API_HEADERS)
+	)
+}
+
+export const renameJob = (renameUrl: string, data: FormData): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpPost(renameUrl, JSON.stringify(data), API_HEADERS)
+	)
+}

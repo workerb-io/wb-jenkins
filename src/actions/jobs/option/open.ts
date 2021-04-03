@@ -1,4 +1,4 @@
-// @description Open Jenkins Job
+// @description Open Job
 
 import { Job } from "../../../utils/interfaces";
 
