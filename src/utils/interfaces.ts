@@ -12,11 +12,17 @@ export interface DecodedAPIResponse {
     response: any;
     status: number;
 }
+
+export interface LastBuildResult {
+    _class: string;
+    result: string;
+}
 export interface Job {
-    _class?: string;
+    _class: string;
     name: string;
     url: string;
-    description?: string;
-    fullName?: string;
-    property?: Array<object>;
+    description: string;
+    fullName: string;
+    property: Array<object>;
+    lastBuild: LastBuildResult | null;
 }

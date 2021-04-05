@@ -6,16 +6,17 @@ const USER_AUTH: string = `Basic ${btoa(JENKINS_USER + ":" + JENKINS_TOKEN)}`
 const API_HEADERS = {
 	Authorization: USER_AUTH
 }
+const JOBS_API_TREE = "jobs[name,url,description,fullName,lastBuild[result],property[parameterDefinitions[name]]]"
 
 export const getJobs = (): DecodedAPIResponse => {
 	return decodeApiResponse(
-		httpGet(getUrl(`/view/All/api/json?tree=jobs[name,url,description,fullName,property[parameterDefinitions[name]]]`), API_HEADERS)
+		httpGet(getUrl(`/view/All/api/json?tree=${JOBS_API_TREE}`), API_HEADERS)
 	);
 }
 
 export const buildJob = (buildUrl: string): DecodedAPIResponse => {
 	return decodeApiResponse(
-		httpPost(buildUrl, JSON.stringify({}), API_HEADERS)
+		httpPost(buildUrl, "{}", API_HEADERS)
 	)
 }
 

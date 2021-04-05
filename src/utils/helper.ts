@@ -19,9 +19,9 @@ export const decodeApiResponse = (result: APIResponse): DecodedAPIResponse => {
 	};
 }
 
-export const getAPIErrorMessage = (errorResponse: any): string => {
-	return errorResponse.errors.map((error: ErrorResponse) => error.message).join(" ");
-}
+export const truncate = (str: string, maxLength: number): string => {
+	return (str.length > maxLength) ? str.substr(0, maxLength - 1) + '...' : str;
+};
 
 // base64 character set, plus padding character (=)
 let b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
