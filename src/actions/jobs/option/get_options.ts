@@ -14,12 +14,23 @@ const returnOptions = () => {
 	const removeAction: string[] = []
 	if (options.jobs) {
 		const job = options.jobs as Job;
-		if (job && job.property && job.property.length > 0 && hasParameters(job.property)) {
-			// parameterized job
-			removeAction.push('build') // removing build without params action
-		} else {
-			// job without parameters
-			removeAction.push('parameter_build') // removing build with params action
+		if (job) {
+			if (job.disabled) {
+				// Job is Disabled
+				// removing build, parameter build, disable Action
+				removeAction.push('build', 'parameter_build', 'disable');
+			} else {
+				// Job is Enabled
+				if (job.property && job.property.length > 0 && hasParameters(job.property)) {
+					// parameterized job
+					// removing build without params and enable action
+					removeAction.push('build', 'enable');
+				} else {
+					// job without parameters
+					// removing build with params and enable action
+					removeAction.push('parameter_build', 'enable');
+				}
+			}
 		}
 	}
 	return JSON.stringify({

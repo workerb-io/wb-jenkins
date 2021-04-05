@@ -6,7 +6,7 @@ const USER_AUTH: string = `Basic ${btoa(JENKINS_USER + ":" + JENKINS_TOKEN)}`
 const API_HEADERS = {
 	Authorization: USER_AUTH
 }
-const JOBS_API_TREE = "jobs[name,url,description,fullName,lastBuild[result],property[parameterDefinitions[name]]]"
+const JOBS_API_TREE = "jobs[name,url,description,fullName,lastBuild[result],disabled,property[parameterDefinitions[name]]]"
 const BUILDS_API_TREE = "builds[id,displayName,fullDisplayName,description,result,url]"
 
 export const getJobs = (): DecodedAPIResponse => {
@@ -30,6 +30,13 @@ export const deleteJob = (deleteUrl: string): DecodedAPIResponse => {
 export const renameJob = (renameUrl: string, data: FormData): DecodedAPIResponse => {
 	return decodeApiResponse(
 		httpPost(renameUrl, JSON.stringify(data), API_HEADERS)
+	)
+}
+
+// this function will enable/disable job
+export const updateJob = (updateJobUrl: string): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpPost(updateJobUrl, JSON.stringify({}), API_HEADERS)
 	)
 }
 

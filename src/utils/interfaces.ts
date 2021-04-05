@@ -24,6 +24,7 @@ export interface Job {
     description: string;
     fullName: string;
     property: Array<object>;
+    disabled: boolean;
     lastBuild: LastBuildResult | null;
 }
 
