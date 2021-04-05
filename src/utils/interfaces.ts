@@ -26,3 +26,14 @@ export interface Job {
     property: Array<object>;
     lastBuild: LastBuildResult | null;
 }
+
+export interface Build {
+    _class: string;
+    description: string | null;
+    name?: string;
+    displayName: string;
+    fullDisplayName: string;
+    id: string;
+    result: string;
+    url: string;
+}
