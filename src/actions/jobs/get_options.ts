@@ -1,5 +1,5 @@
 import { getJobs } from "../../utils/api";
-import { truncate } from "../../utils/helper";
+import { hasParameters, truncate } from "../../utils/helper";
 import { Job } from "../../utils/interfaces";
 
 const returnOptions = () => {
@@ -19,7 +19,12 @@ const retrieveJobs = (): Job[] => {
 		if (jobs && jobs.length > 0) {
 			jobs.forEach(job => {
 				// updating job description
-				job.description = truncate(job.description, 20) + ` [${job.lastBuild ? job.lastBuild.result : "NOT BUILT"}]`
+				let description: string = truncate(job.description, 20); // Job description truncated to 20 chracters only
+				description += ` [${job.lastBuild ? job.lastBuild.result : "NOT BUILT"}]`; // add last build info
+				description += ` [${job.disabled ? "DISABLED" : ""}]`; // add disabled info
+
+				job.description = description,
+					job.isParameterized = hasParameters(job.property)
 			});
 		}
 	} else {

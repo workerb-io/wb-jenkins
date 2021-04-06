@@ -10,6 +10,7 @@ if (options.jobs) {
 
 	// FIXME: updateJob API return HTML response (server side rendered page)
 	// because of that it is throwing an error "RangeError: Maximum call stack size exceeded"
+
 	const updateJobResponse = updateJob(enableUrl);
 	if (updateJobResponse.status === 200) {
 		notify("Successfully enabled job", "success", 3000);

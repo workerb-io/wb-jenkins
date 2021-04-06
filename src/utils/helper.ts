@@ -19,6 +19,19 @@ export const decodeApiResponse = (result: APIResponse): DecodedAPIResponse => {
 	};
 }
 
+// check if the job is parameterized or not
+export const hasParameters = (props: Array<any>): boolean => {
+	let hasParams = false;
+	if (props && props.length > 0) {
+		props.forEach((prop: any) => {
+			if ("parameterDefinitions" in prop && prop["parameterDefinitions"].length > 0) {
+				hasParams = true
+			}
+		});
+	}
+	return hasParams
+}
+
 export const truncate = (str: string, maxLength: number): string => {
 	return (str.length > maxLength) ? str.substr(0, maxLength - 1) + '...' : str;
 };

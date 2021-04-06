@@ -12,4 +12,9 @@ export const JOB_DISABLE_URI: string = "disable";
 export const JOB_RENAME_URI: string = "confirmRename";
 export const JOB_RENAME_REDIRECT_URI: string = "confirm-rename";
 export const BUILD_CONSOLE_URI: string = "console";
+export const BUILD_CHANGES_URI: string = "changes";
+export const BUILD_TESTREPORTS_URI: string = "testReports";
+export const BUILD_CONFIGURE_URI: string = "configure";
+export const BUILD_DELETE_URI: string = "doDelete";
+export const BUILD_PARAMETERS_URI: string = "parameters";
 

@@ -25,6 +25,7 @@ export interface Job {
     fullName: string;
     property: Array<object>;
     disabled: boolean;
+    isParameterized: boolean;
     lastBuild: LastBuildResult | null;
 }
 

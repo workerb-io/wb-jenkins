@@ -1,15 +1,5 @@
 import { Job } from "../../../utils/interfaces";
 
-const hasParameters = (props: Array<any>): boolean => {
-	let hasParams = false;
-	props.forEach((prop: any) => {
-		if ("parameterDefinitions" in prop && prop["parameterDefinitions"].length > 0) {
-			hasParams = true
-		}
-	});
-	return hasParams
-}
-
 const returnOptions = () => {
 	const removeAction: string[] = []
 	if (options.jobs) {
@@ -21,7 +11,7 @@ const returnOptions = () => {
 				removeAction.push('build', 'parameter_build', 'disable');
 			} else {
 				// Job is Enabled
-				if (job.property && job.property.length > 0 && hasParameters(job.property)) {
+				if (job.isParameterized) {
 					// parameterized job
 					// removing build without params and enable action
 					removeAction.push('build', 'enable');

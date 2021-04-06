@@ -45,3 +45,9 @@ export const getBuilds = (jobUrl: string): DecodedAPIResponse => {
 		httpGet(`${jobUrl}api/json?tree=${BUILDS_API_TREE}`, API_HEADERS)
 	)
 }
+
+export const deleteBuild = (deleteBuildUrl: string): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpPost(deleteBuildUrl, JSON.stringify({}), API_HEADERS)
+	)
+}
