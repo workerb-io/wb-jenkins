@@ -1,6 +1,5 @@
 // @description Rename
 
-import { renameJob } from "../../../utils/api";
 import { JOB_RENAME_REDIRECT_URI, JOB_RENAME_URI } from "../../../utils/constants";
 import { Job } from "../../../utils/interfaces";
 
@@ -12,7 +11,6 @@ import { Job } from "../../../utils/interfaces";
 if (options.jobs) {
 	const job: Job = options.jobs;
 	const renameRedirectURL: string = job.url + JOB_RENAME_REDIRECT_URI
-	const renameUrl: string = job.url + JOB_RENAME_URI;
 
 	let newName = prompt("Enter new job name");
 	if (newName) {

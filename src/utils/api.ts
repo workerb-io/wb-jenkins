@@ -8,6 +8,7 @@ const API_HEADERS = {
 }
 const JOBS_API_TREE = "jobs[name,url,description,fullName,lastBuild[result],disabled,property[parameterDefinitions[name]]]"
 const BUILDS_API_TREE = "builds[id,displayName,fullDisplayName,description,result,url]"
+const USERS_API_TREE = "users[user[absoluteUrl,fullName,description]]"
 
 export const getJobs = (): DecodedAPIResponse => {
 	return decodeApiResponse(
@@ -49,5 +50,11 @@ export const getBuilds = (jobUrl: string): DecodedAPIResponse => {
 export const deleteBuild = (deleteBuildUrl: string): DecodedAPIResponse => {
 	return decodeApiResponse(
 		httpPost(deleteBuildUrl, JSON.stringify({}), API_HEADERS)
+	)
+}
+
+export const getUsers = (): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpGet(getUrl(`/asynchPeople/api/json?tree=${USERS_API_TREE}`), API_HEADERS)
 	)
 }

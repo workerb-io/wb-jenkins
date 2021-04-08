@@ -21,7 +21,7 @@ const retrieveJobs = (): Job[] => {
 				// updating job description
 				let description: string = truncate(job.description, 20); // Job description truncated to 20 chracters only
 				description += ` [${job.lastBuild ? job.lastBuild.result : "NOT BUILT"}]`; // add last build info
-				description += ` [${job.disabled ? "DISABLED" : ""}]`; // add disabled info
+				description += ` ${job.disabled ? "[DISABLED]" : ""}`; // add disabled info
 
 				job.description = description,
 					job.isParameterized = hasParameters(job.property)

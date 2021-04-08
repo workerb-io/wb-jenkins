@@ -39,3 +39,18 @@ export interface Build {
     result: string;
     url: string;
 }
+
+export interface User {
+    name: string;
+    url: string;
+    description: string | null;
+}
+
+
+export interface JenkinsUser {
+    user: {
+        absoluteUrl: string;
+        fullName: string;
+        description: string | null;
+    }
+}
