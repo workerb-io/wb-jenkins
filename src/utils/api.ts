@@ -1,14 +1,32 @@
 import { JENKINS_TOKEN, JENKINS_USER, JOB_BUILD_URI } from "./constants";
-import { btoa, decodeApiResponse, getUrl } from "./helper";
+import { decodeApiResponse, getUrl } from "./helper";
 import { DecodedAPIResponse } from "./interfaces";
 
 const USER_AUTH: string = `Basic ${btoa(JENKINS_USER + ":" + JENKINS_TOKEN)}`
 const API_HEADERS = {
 	Authorization: USER_AUTH
 }
+
 const JOBS_API_TREE = "jobs[name,url,description,fullName,lastBuild[result],disabled,property[parameterDefinitions[name]]]"
 const BUILDS_API_TREE = "builds[id,displayName,fullDisplayName,description,result,url]"
 const USERS_API_TREE = "users[user[absoluteUrl,fullName,description]]"
+
+const getJenkinsCrumbHeader = () => {
+	const crumbResponse = getJenkinsCrumb();
+	if (crumbResponse.status === 200 && crumbResponse.response) {
+		const data = crumbResponse.response;
+		return {
+			[data.crumbRequestField]: data.crumb
+		};
+	}
+	return {};
+}
+
+export const getJenkinsCrumb = (): DecodedAPIResponse => {
+	return decodeApiResponse(
+		httpGet(getUrl(`/crumbIssuer/api/json`), API_HEADERS)
+	)
+}
 
 export const getJobs = (): DecodedAPIResponse => {
 	return decodeApiResponse(
@@ -16,28 +34,32 @@ export const getJobs = (): DecodedAPIResponse => {
 	);
 }
 
-export const buildJob = (buildUrl: string): DecodedAPIResponse => {
+export const buildJob = (buildUrl: string): DecodedAPIResponse => { // working
+	const crumbHeaders = getJenkinsCrumbHeader();
 	return decodeApiResponse(
-		httpPost(buildUrl, "{}", API_HEADERS)
+		httpPost(buildUrl, "{}", crumbHeaders)
 	)
 }
 
 export const deleteJob = (deleteUrl: string): DecodedAPIResponse => {
+	const crumbHeaders = getJenkinsCrumbHeader();
 	return decodeApiResponse(
-		httpPost(deleteUrl, JSON.stringify({}), API_HEADERS)
+		httpPost(deleteUrl, JSON.stringify({}), crumbHeaders)
 	)
 }
 
 export const renameJob = (renameUrl: string, data: FormData): DecodedAPIResponse => {
+	const crumbHeaders = getJenkinsCrumbHeader();
 	return decodeApiResponse(
-		httpPost(renameUrl, JSON.stringify(data), API_HEADERS)
+		httpPost(renameUrl, JSON.stringify(data), crumbHeaders)
 	)
 }
 
 // this function will enable/disable job
 export const updateJob = (updateJobUrl: string): DecodedAPIResponse => {
+	const crumbHeaders = getJenkinsCrumbHeader();
 	return decodeApiResponse(
-		httpPost(updateJobUrl, JSON.stringify({}), API_HEADERS)
+		httpPost(updateJobUrl, JSON.stringify({}), crumbHeaders)
 	)
 }
 
@@ -48,8 +70,9 @@ export const getBuilds = (jobUrl: string): DecodedAPIResponse => {
 }
 
 export const deleteBuild = (deleteBuildUrl: string): DecodedAPIResponse => {
+	const crumbHeaders = getJenkinsCrumbHeader();
 	return decodeApiResponse(
-		httpPost(deleteBuildUrl, JSON.stringify({}), API_HEADERS)
+		httpPost(deleteBuildUrl, JSON.stringify({}), crumbHeaders)
 	)
 }
 
