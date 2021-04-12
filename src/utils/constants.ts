@@ -21,3 +21,7 @@ export const BUILD_CONFIGURE_URI: string = "configure";
 export const BUILD_DELETE_URI: string = "doDelete";
 export const BUILD_PARAMETERS_URI: string = "parameters";
 
+
+export const JOBS: string = "jobs";
+export const USERS: string = "users";
+export const BUILDS: string = "builds";
