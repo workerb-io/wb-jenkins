@@ -56,8 +56,8 @@ module.exports = {
     plugins: [
         new WBMetaJsonGenerator({
             environment,
-            package: "wb-jenkins",
-            packageDescription: "workerb package for jenkins",
+            package: "Jenkins",
+            packageDescription: "Jenkins CI",
             packageIcon: "",
             readmeFile: 'README.md',
             sites: ["https://www.jenkins.io"],
