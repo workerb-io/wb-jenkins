@@ -9,9 +9,9 @@ if (options.jobs) {
 	const disableUrl: string = job.url + JOB_DISABLE_URI;
 
 	const updateJobResponse = updateJob(disableUrl);
-	if (updateJobResponse.status === 302) {
-		reIndex([JOBS])
-		notify("Successfully disabled job", "error", 3000);
+	if (updateJobResponse.status === 200) {
+		reIndex([]);
+		notify("Successfully disabled job", "success", 3000);
 	} else {
 		notify("Failed to disable job", "error", 3000);
 	}
