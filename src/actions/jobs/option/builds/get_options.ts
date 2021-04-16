@@ -21,11 +21,13 @@ const retrieveBuilds = (jobUrl: string): Build[] => {
 	let buildsResponse = getBuilds(jobUrl);
 	if (buildsResponse.status === 200 && buildsResponse.response) {
 		builds = buildsResponse.response.builds
-		builds.forEach(build => {
-			build.name = build.displayName;
-			let desc = build.description ? truncate(build.description, 20) : "";
-			build.description = desc + ` [${build.result}]`;
-		})
+		if (builds && builds.length) {
+			builds.forEach(build => {
+				build.name = build.displayName;
+				let desc = build.description ? truncate(build.description, 20) : "";
+				build.description = desc + ` [${build.result}]`;
+			})
+		}
 	} else {
 		log(buildsResponse.response);
 	}

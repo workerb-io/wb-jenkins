@@ -43,9 +43,7 @@ export const buildJob = (buildUrl: string): DecodedAPIResponse => { // working
 
 export const deleteJob = (deleteUrl: string): DecodedAPIResponse => {
 	const crumbHeaders = getJenkinsCrumbHeader();
-	return decodeApiResponse(
-		httpPost(deleteUrl, JSON.stringify({}), crumbHeaders)
-	)
+	return httpPost(deleteUrl, JSON.stringify({}), crumbHeaders)
 }
 
 export const renameJob = (renameUrl: string, data: FormData): DecodedAPIResponse => {
