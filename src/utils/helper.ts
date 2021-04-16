@@ -33,5 +33,5 @@ export const hasParameters = (props: Array<any>): boolean => {
 }
 
 export const truncate = (str: string, maxLength: number): string => {
-	return (str.length > maxLength) ? str.substr(0, maxLength - 1) + '...' : str;
+	return (str && str.length > maxLength) ? str.substr(0, maxLength - 1) + '...' : str;
 };
