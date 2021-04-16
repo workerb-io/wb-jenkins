@@ -9,8 +9,8 @@ if (options.jobs) {
 	const enableUrl: string = job.url + JOB_ENABLE_URI;
 
 	const updateJobResponse = updateJob(enableUrl);
-	if (updateJobResponse.status === 302) {
-		reIndex([JOBS])
+	if (updateJobResponse.status === 200) {
+		reIndex([]);
 		notify("Successfully enabled job", "success", 3000);
 	} else {
 		notify("Failed to enable job", "error", 3000);
