@@ -17,7 +17,26 @@ if(mode.length > 0 && mode[0].includes("dev")) {
 const entryPaths = helpers.getFiles(entryFiles, ".ts").map(file => file.replace('.ts', ''));
 
 
-const folderDescriptionList = []
+const folderDescriptionList = [
+  {
+    path: "/jobs",
+    description: "Display all Jenkins jobs",
+    iconPath: "src/actions/jobs/job_icons/job.png",
+    defaultAction: "open"
+  },
+  {
+    path: "/users",
+    description: "Display all Jenkins Users",
+    iconPath: "src/actions/users/user_icons/users.png",
+    defaultAction: "open"
+  },
+  {
+    path: "/jobs/option/builds",
+    description: "Display all Jenkins Job Builds",
+    iconPath: "src/actions/jobs/option/builds/build_icons/disabled.png",
+    defaultAction: "open"
+  }
+]
 
 module.exports = {
     entry: entryPaths.reduce((result, entryPath) => {
